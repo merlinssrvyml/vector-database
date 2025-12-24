@@ -217,3 +217,5 @@ __marimo__/
 
 # docker-compose volume
 volumes/
+
+.DS_Store
