@@ -59,3 +59,5 @@ torchvision==0.24.1
 fastapi==0.127.0
 uvicorn==0.40.0
 python-multipart==0.0.21
+sentence-transformers==5.2.0
+tf-keras==2.20.1
