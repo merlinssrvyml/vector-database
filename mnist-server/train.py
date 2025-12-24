@@ -7,6 +7,7 @@ from torchvision import datasets, transforms
 # ----------------------------
 # Configuration
 # ----------------------------
+
 EMBEDDING_DIM = 128 # Dimension of the embedding vector
 BATCH_SIZE = 64
 EPOCHS = 5
@@ -15,6 +16,7 @@ MODEL_PATH = "mnist_encoder.pt"
 # ----------------------------
 # Dataset
 # ----------------------------
+
 transform = transforms.Compose([
     transforms.ToTensor()
 ])
@@ -31,6 +33,7 @@ loader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
 # ----------------------------
 # Model & Training Setup
 # ----------------------------
+
 model = MNISTEncoder(embedding_dim=EMBEDDING_DIM)
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 loss_fn = torch.nn.CrossEntropyLoss()
@@ -38,6 +41,7 @@ loss_fn = torch.nn.CrossEntropyLoss()
 # ----------------------------
 # Train
 # ----------------------------
+
 model.train()
 for epoch in range(EPOCHS):
     total_loss = 0.0
@@ -56,12 +60,14 @@ for epoch in range(EPOCHS):
 # ----------------------------
 # Save trained model
 # ----------------------------
+
 torch.save(model.state_dict(), MODEL_PATH)
 print(f"Model saved to {MODEL_PATH}")
 
 # ----------------------------
 # Insert embeddings into Milvus
 # ----------------------------
+
 collection = get_collection()
 
 embeddings = []

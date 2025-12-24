@@ -1,13 +1,14 @@
-from pymilvus import Collection, CollectionSchema, FieldSchema, DataType, connections
 import numpy as np
+from pymilvus import (Collection, CollectionSchema, DataType, FieldSchema,
+                      connections)
 
 # Step 1: Connect to Milvus server
 connections.connect("default", host="localhost", port="19530")
 
 # Step 2: Define the schema for the collection
 fields = [
-    FieldSchema(name="vector", dtype=DataType.FLOAT_VECTOR, dim=100),  # 100-dimensional vectors
-    FieldSchema(name="id", dtype=DataType.INT64, is_primary=True, auto_id=True)  # Auto ID for primary key
+    FieldSchema(name="id", dtype=DataType.INT64, is_primary=True, auto_id=True),  # Auto ID for primary key
+    FieldSchema(name="vector", dtype=DataType.FLOAT_VECTOR, dim=100)  # 100-dimensional vectors
 ]
 
 schema = CollectionSchema(fields, description="Vector database for AI applications")
@@ -21,9 +22,7 @@ dimension = 100
 vectors = np.random.random((num_vectors, dimension)).astype('float32')
 
 # Step 5: Insert the vectors into the collection
-data = [
-    vectors.tolist(),  # Insert vectors
-]
+data = [vectors.tolist()]
 
 # Insert the vectors into the collection
 collection.insert(data)
@@ -31,9 +30,11 @@ print(f"Inserted {num_vectors} vectors into Milvus!")
 
 # Step 6: Create an index for the 'vector' field
 index_params = {
-    "index_type": "IVF_FLAT",  # Index type
+    "index_type": "IVF_FLAT",  # Index type, inverted file index for fast search
     "metric_type": "L2",  # Metric type, L2 for Euclidean distance
-    "params": {"nlist": 128}  # Additional parameters like nlist for IVF
+    "params": { # Additional parameters like nlist
+        "nlist": 128, # controls how many partitions are used in the index. Larger values may result in faster search but require more memory
+    }
 }
 
 # Create index on the 'vector' field
@@ -48,6 +49,7 @@ print("Collection loaded into memory!")
 query_vector = vectors[0].reshape(1, -1)  # Query with the first vector
 
 # Step 9: Perform a similarity search (find 3 nearest neighbors)
+# nprobe is a parameter controlling how many partitions to search in the index, higher values give more accurate results but take longer
 search_params = {"nprobe": 10}  # Set search parameters
 results = collection.search(query_vector, "vector", search_params, limit=3)
 

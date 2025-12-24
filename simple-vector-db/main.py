@@ -1,6 +1,7 @@
 import numpy as np
 
-# Step 1: Create random vectors (for learning purposes)
+
+# Step 1: Create random vectors
 def generate_random_vectors(num_vectors, dimensions):
     vectors = np.random.rand(num_vectors, dimensions)
     return vectors

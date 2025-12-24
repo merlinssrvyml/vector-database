@@ -1,0 +1,31 @@
+id,text
+1,Vector databases enable efficient similarity search
+2,Milvus is designed for large scale AI applications
+3,Semantic search understands meaning not keywords
+4,Kubernetes orchestrates containerized workloads
+5,Redis is often used for caching and shared state
+6,Machine learning models require quality data
+7,Embeddings convert text into numerical vectors
+8,Approximate nearest neighbor search improves latency
+9,Python is widely used in data science
+10,Go is popular for backend systems
+11,Neural networks learn complex patterns
+12,Transformers power modern NLP systems
+13,Cosine similarity measures vector orientation
+14,Microservices improve system modularity
+15,Observability is critical in distributed systems
+16,Fault tolerance improves system reliability
+17,Horizontal scaling handles increased traffic
+18,Indexes accelerate database queries
+19,FastAPI is used for building APIs
+20,Latency matters in real time systems
+21,Data pipelines feed machine learning models
+22,Search engines rely on ranking algorithms
+23,Recommendation systems use embeddings
+24,Cloud native architectures favor scalability
+25,Load balancing distributes traffic evenly
+26,High availability reduces downtime
+27,Vector search is core to RAG systems
+28,LLMs rely on contextual representations
+29,Monitoring helps detect system failures
+30,Distributed systems introduce consistency tradeoffs
